@@ -15,10 +15,13 @@ const Navbar = () => {
                 <p className="pt-2 font-mono font-extrabold">reals</p>
             </div>
             <div className="flex">
-                <ul className="flex gap-4">
+                <ul className="flex gap-10">
                     <li><Link href={"/"}>Home</Link></li>
+                    <li><Link href={"/"}>About</Link></li>
+                    <li><Link href={"/"}>Features </Link></li>
                     <li><Link href={"/"}>Dashboard</Link></li>
-                    <li><Link href={"/"}>Pricing</Link></li>   
+                    <li><Link href={"/"}>Pricing</Link></li>
+                       
                 </ul>
             </div>      
         </div>
