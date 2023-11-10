@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import hp from '../../../public/brands-and-logotypes.png';
 import stanford from '../../../public/stanford-university-logo.png'
@@ -5,8 +7,8 @@ import Image from 'next/image';
 
 const Brands = () => {
   return (
-    <div className='w-full flex flex-col justify-center align-middle py-[3rem] gap-4 my-[2rem] overflow-hidden  bg-gray-primary'>
-      <h1 className='text-center text-2xl'>Our customers come from</h1>
+    <div className='w-full flex flex-col justify-center align-middle py-[40px] gap-4 overflow-hidden  bg-gray-primary'>
+      
       <div className='self-center p-2 animate-scrolling-logos'>
         <ul className='flex gap-[1.5rem]'>
             <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="80" height="80" viewBox="0 0 50 50">
