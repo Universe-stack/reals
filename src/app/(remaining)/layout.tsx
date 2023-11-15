@@ -1,12 +1,13 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import { Inter } from 'next/font/google'
-import './globals.css';
-import Nav from '@/app/components/Navbar'
+import { GeistSans } from 'geist/font/sans';
+import '../globals.css';
+//import Nav from '@/app/components/Navbar'
 import Navbar from '@/app/components/Navbar';
-import Footer from '@/app/components/Footer'
+import Footer from '@/app/components/Footer';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 const poppins = Poppins({
   weight:'400',
   subsets:['latin-ext']
@@ -89,7 +90,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={poppins.className}>
+      <body className={GeistSans.className}>
         <Navbar />
         {children}
         <Footer />

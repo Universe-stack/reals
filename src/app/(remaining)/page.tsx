@@ -2,13 +2,13 @@
 
 import React from 'react'
 import Image from 'next/image';
-import HeroImage from './components/Image';
-import Brands from './components/Brands';
-import Product from './components/Product';
-import Testimonials from './components/Testimonials';
-import Stats from './components/Stats';
-import Video from './components/Video';
-import Community from './components/Community'
+import HeroImage from '../components/Image';
+import Brands from '../components/Brands';
+import Product from '../components/Product';
+import Testimonials from '../components/Testimonials';
+import Stats from '../components/Stats';
+import Video from '../components/Video';
+import Community from '../components/Community'
 
 
 export default function Home() {
@@ -18,8 +18,8 @@ export default function Home() {
         <div className='HeroPage flex justify-evenly align-middle gap-6 w-[100%] self-center'>
           <div className='HeroText w-[50%]'>
             <h1 className='text-5xl mt-10 font-[900]'>Increase your<br></br> fxn productivity today!</h1>
-            <p className='text-lg mt-5'> Start by making yourself a daily dose of motivation,go for a walk and listen to Burna boy!</p>
-            <p className='text-lg font-medium'> Wondering where to start? 👇</p>
+            <p className='text-lg mt-5 text-[#666] leading-7 mt-2'> Start by making yourself a daily dose of motivation,go for a walk and listen to Burna boy!</p>
+            <p className='text-lg font-medium text-[#666] leading-7 mt-1'> Wondering where to start? 👇</p>
           </div>
           <div className='HeroImg w-[50%]'><HeroImage/></div>
         </div>
