@@ -3,8 +3,9 @@ import React from 'react'
 type Props = {}
 
 const Sidebar = (props: Props) => {
-  return (
-    <div className='bg-[#FAFAFB] min-h-screen text-center flex flex-col justify-between align-middle text-[#3F3F46]'>
+  return (    
+  
+  <div className='bg-[#FAFAFB] min-h-full text-center flex flex-col justify-between align-middle text-[#3F3F46] pb-[2.69rem] '>
         <div>
         <button className='flex ml-[2.5rem] p-[0.652rem] justify-center gap-[0.625] rounded-[0.625rem] bg-[#4F46E5] text-[0.8125rem] font-[700] text-white self-center w-[13.25rem] my-[2.25rem]'>Connect new account</button>
         <span className='mt-[1.88rem]'>
