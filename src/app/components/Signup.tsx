@@ -1,5 +1,6 @@
 'use client'
-import React, {useState, ChangeEvent, FormEvent} from 'react'
+import React, {useState, ChangeEvent, FormEvent} from 'react';
+import Link from 'next/link';
 
 type Props = {}
 
@@ -96,6 +97,8 @@ const Signup = (props: Props) => {
 
                     <p className='text-[0.873rem] text-[#18181B] '>Remember me</p>
                     </span>
+
+                    <Link href={'#'} className='text-[0.875rem] font-[400] leading-[1.375rem] text-[#2563EB]'> Forgot password?</Link>
                 </div>
 
                 <div className='mt-[2.81rem] flex gap-6'>
@@ -104,7 +107,7 @@ const Signup = (props: Props) => {
                     type="submit"
                     className="bg-[#2563EB] text-white p-[0.8rem] w-[10rem] rounded-[0.5635rem] hover:bg-blue-600"
                     >
-                    Sign In
+                    Sign Up
                     </button>
 
                     {/* Sign Up with Google Button */}
@@ -121,10 +124,11 @@ const Signup = (props: Props) => {
                     <path d="M17.0632 6.36061C17.3746 6.61711 17.8273 6.5986 18.1125 6.31336L20.3282 4.09758C20.6518 3.77395 20.6288 3.24422 20.2831 2.94431C18.1683 1.10963 15.4168 0 12.4258 0V4.69566C14.185 4.69566 15.801 5.32078 17.0632 6.36061Z" fill="#D93F21"/>
                     </svg>
                     
-                    </span>Sign In with Google
+                    </span>Sign Up with Google
                     </button>
                 </div>
             </form>
+            <div className='mt-[1.25rem]'><p className='text-[#64748B] text-[0.875rem] font-[400] leading-[1.375rem]'>Dont have an account? <Link href={'#'} className='text-[#2563EB] text-[0.8125rem] font-[500] leading-[1.325rem]'>Create new account</Link></p></div>
         </div>
    </div>
   )

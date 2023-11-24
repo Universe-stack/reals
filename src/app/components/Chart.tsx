@@ -115,7 +115,7 @@ const CardLineChart: React.FC = () => {
       },
     };
     const ctx = document.getElementById("line-chart") as HTMLCanvasElement;
-    (window as MyWindow).myLine = new Chart(ctx, config);
+    (window as MyWindow).myLine = new Chart(ctx, config as any);
   }, []);
 
   return (

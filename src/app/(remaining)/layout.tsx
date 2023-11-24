@@ -6,6 +6,7 @@ import '../globals.css';
 //import Nav from '@/app/components/Navbar'
 import Navbar from '@/app/components/Navbar';
 import Footer from '@/app/components/Footer';
+import Provider from '../components/Provider'
 
 const inter = Inter({ subsets: ['latin'] });
 const poppins = Poppins({
@@ -91,9 +92,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={GeistSans.className}>
-        <Navbar />
-        {children}
-        <Footer />
+        <Provider>
+          <Navbar />
+          {children}
+          <Footer />
+        </Provider>
       </body>
     </html>
   )
