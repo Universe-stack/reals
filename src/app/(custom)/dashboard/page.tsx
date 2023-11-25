@@ -1,12 +1,13 @@
-import React from 'react'
+import React,{Suspense} from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import sunset from '../../../../public/reals sunset.png';
 import Chart from '../../components/Chart';
 
-type Props = {}
-
-const Dashboard = (props: Props) => {
+function ChartFallback() {
+  return <p>Chart loading...</p>
+}
+const Dashboard = () => {
   return (
     <div className='bg-[#FAFAFB] min-h-screen w-full text-center flex justify-between align-middle text-[#3F3F46]'>
       <div className=' py-[2.06rem] w-[92%] ml-[2.5%] h-full flex flex-col justify-center text-[#3F3F46] gap-[1.81rem]'>
@@ -19,7 +20,7 @@ const Dashboard = (props: Props) => {
               <span className='flex flex-row justify-between align-middle'>
                 <p className=' text-left text-[#18181B] leading-[2rem] text-[1.3125rem] font-[700]'>$54</p>
                 <p className='text-right text-[#22C55E] font-[500] text-[0.8125rem] leading-[1.32rem] flex mt-2'> +36%<span><svg xmlns="http://www.w3.org/2000/svg" width="10" height="11" viewBox="0 0 10 11" fill="none">
-                    <path d="M2.08333 4.66667L4.99999 1.75M4.99999 1.75L7.91666 4.66667M4.99999 1.75V9.25" stroke="#22C55E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2.08333 4.66667L4.99999 1.75M4.99999 1.75L7.91666 4.66667M4.99999 1.75V9.25" stroke="#22C55E" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </span>
                 </p>
@@ -32,7 +33,7 @@ const Dashboard = (props: Props) => {
               <span className='flex flex-row justify-between align-middle'>
                 <p className=' text-left text-[#18181B] leading-[2rem] text-[1.3125rem] font-[700]'>$1,124</p>
                 <p className='text-right text-[#22C55E] font-[500] text-[0.8125rem] leading-[1.32rem] flex mt-2'> +36%<span><svg xmlns="http://www.w3.org/2000/svg" width="10" height="11" viewBox="0 0 10 11" fill="none">
-                    <path d="M2.08333 4.66667L4.99999 1.75M4.99999 1.75L7.91666 4.66667M4.99999 1.75V9.25" stroke="#22C55E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2.08333 4.66667L4.99999 1.75M4.99999 1.75L7.91666 4.66667M4.99999 1.75V9.25" stroke="#22C55E" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </span>
                 </p>
@@ -45,7 +46,7 @@ const Dashboard = (props: Props) => {
               <span className='flex flex-row justify-between align-middle'>
                 <p className=' text-left text-[#18181B] leading-[2rem] text-[1.3125rem] font-[700]'>4</p>
                 <p className='text-right text-[#22C55E] font-[500] text-[0.8125rem] leading-[1.32rem] flex mt-2'> +43%<span><svg xmlns="http://www.w3.org/2000/svg" width="10" height="11" viewBox="0 0 10 11" fill="none">
-                    <path d="M2.08333 4.66667L4.99999 1.75M4.99999 1.75L7.91666 4.66667M4.99999 1.75V9.25" stroke="#22C55E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2.08333 4.66667L4.99999 1.75M4.99999 1.75L7.91666 4.66667M4.99999 1.75V9.25" stroke="#22C55E" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </span>
                 </p>
@@ -58,7 +59,7 @@ const Dashboard = (props: Props) => {
               <span className='flex flex-row justify-between align-middle'>
                 <p className=' text-left text-[#18181B] leading-[2rem] text-[1.3125rem] font-[700]'>32</p>
                 <p className='text-right text-[#22C55E] font-[500] text-[0.8125rem] leading-[1.32rem] flex mt-2'> 896%<span><svg xmlns="http://www.w3.org/2000/svg" width="10" height="11" viewBox="0 0 10 11" fill="none">
-                    <path d="M2.08333 4.66667L4.99999 1.75M4.99999 1.75L7.91666 4.66667M4.99999 1.75V9.25" stroke="#22C55E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2.08333 4.66667L4.99999 1.75M4.99999 1.75L7.91666 4.66667M4.99999 1.75V9.25" stroke="#22C55E" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </span>
                 </p>
@@ -70,7 +71,9 @@ const Dashboard = (props: Props) => {
         <div className='flex gap-[1.94rem] w-full'>
           <div className=' flex flex-col gap-[1.81rem] w-[70%]'>
             <div className='w-[100%] h-[20.5rem] bg-[#FFFFFF] rounded-[0.625rem] border border-[#E4E4E7]'>
+            <Suspense fallback={<ChartFallback />}>
               <Chart />
+            </Suspense>
             </div>
  
             <div className='w-[100%] bg-[#FFFFFF] rounded-[0.625rem] border border-[#E4E4E7]'>
@@ -84,7 +87,7 @@ const Dashboard = (props: Props) => {
                   <span>
                    <Link href={"#"}>
                     <p className='flex cursor-pointer'> See all schedules <span className='mt-1.5'><svg xmlns="http://www.w3.org/2000/svg" width="11" height="12" viewBox="0 0 11 12" fill="none">
-                      <path d="M4.125 2.79167L7.33333 6L4.125 9.20834" stroke="#4F46E5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M4.125 2.79167L7.33333 6L4.125 9.20834" stroke="#4F46E5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg></span>
                     </p>
                    </Link>
@@ -117,7 +120,7 @@ const Dashboard = (props: Props) => {
 
                         <button>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                              <path d="M5 12H5.01M12 12H12.01M19 12H19.01M6 12C6 12.5523 5.55228 13 5 13C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11C5.55228 11 6 11.4477 6 12ZM13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12ZM20 12C20 12.5523 19.5523 13 19 13C18.4477 13 18 12.5523 18 12C18 11.4477 18.4477 11 19 11C19.5523 11 20 11.4477 20 12Z" stroke="#A1A1AA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M5 12H5.01M12 12H12.01M19 12H19.01M6 12C6 12.5523 5.55228 13 5 13C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11C5.55228 11 6 11.4477 6 12ZM13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12ZM20 12C20 12.5523 19.5523 13 19 13C18.4477 13 18 12.5523 18 12C18 11.4477 18.4477 11 19 11C19.5523 11 20 11.4477 20 12Z" stroke="#A1A1AA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                         </button>
                       </div>
@@ -145,7 +148,7 @@ const Dashboard = (props: Props) => {
 
                         <button>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                              <path d="M5 12H5.01M12 12H12.01M19 12H19.01M6 12C6 12.5523 5.55228 13 5 13C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11C5.55228 11 6 11.4477 6 12ZM13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12ZM20 12C20 12.5523 19.5523 13 19 13C18.4477 13 18 12.5523 18 12C18 11.4477 18.4477 11 19 11C19.5523 11 20 11.4477 20 12Z" stroke="#A1A1AA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M5 12H5.01M12 12H12.01M19 12H19.01M6 12C6 12.5523 5.55228 13 5 13C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11C5.55228 11 6 11.4477 6 12ZM13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12ZM20 12C20 12.5523 19.5523 13 19 13C18.4477 13 18 12.5523 18 12C18 11.4477 18.4477 11 19 11C19.5523 11 20 11.4477 20 12Z" stroke="#A1A1AA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                         </button>
                       </div>
@@ -173,7 +176,7 @@ const Dashboard = (props: Props) => {
 
                         <button>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                              <path d="M5 12H5.01M12 12H12.01M19 12H19.01M6 12C6 12.5523 5.55228 13 5 13C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11C5.55228 11 6 11.4477 6 12ZM13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12ZM20 12C20 12.5523 19.5523 13 19 13C18.4477 13 18 12.5523 18 12C18 11.4477 18.4477 11 19 11C19.5523 11 20 11.4477 20 12Z" stroke="#A1A1AA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M5 12H5.01M12 12H12.01M19 12H19.01M6 12C6 12.5523 5.55228 13 5 13C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11C5.55228 11 6 11.4477 6 12ZM13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12ZM20 12C20 12.5523 19.5523 13 19 13C18.4477 13 18 12.5523 18 12C18 11.4477 18.4477 11 19 11C19.5523 11 20 11.4477 20 12Z" stroke="#A1A1AA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                         </button>
                       </div>
@@ -201,7 +204,7 @@ const Dashboard = (props: Props) => {
 
                         <button>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                              <path d="M5 12H5.01M12 12H12.01M19 12H19.01M6 12C6 12.5523 5.55228 13 5 13C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11C5.55228 11 6 11.4477 6 12ZM13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12ZM20 12C20 12.5523 19.5523 13 19 13C18.4477 13 18 12.5523 18 12C18 11.4477 18.4477 11 19 11C19.5523 11 20 11.4477 20 12Z" stroke="#A1A1AA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M5 12H5.01M12 12H12.01M19 12H19.01M6 12C6 12.5523 5.55228 13 5 13C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11C5.55228 11 6 11.4477 6 12ZM13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12ZM20 12C20 12.5523 19.5523 13 19 13C18.4477 13 18 12.5523 18 12C18 11.4477 18.4477 11 19 11C19.5523 11 20 11.4477 20 12Z" stroke="#A1A1AA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                         </button>
                       </div>

@@ -16,6 +16,7 @@ const poppins = Poppins({
 
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://realsnetwork-768vnozys-universe-stack.vercel.app'),
   title: 'Reals',
   description: 'Become a real deal',
   generator: 'Next.js',
