@@ -5,7 +5,7 @@ import sunset from '../../../../public/reals sunset.png';
 import Chart from '../../components/Chart';
 
 function ChartFallback() {
-  return <p>Chart loading...</p>
+  return <>placeholder</>
 }
 const Dashboard = () => {
   return (

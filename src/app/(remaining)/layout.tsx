@@ -6,7 +6,7 @@ import '../globals.css';
 //import Nav from '@/app/components/Navbar'
 import Navbar from '@/app/components/Navbar';
 import Footer from '@/app/components/Footer';
-import Provider from '../components/Provider'
+//import Provider from '../components/Provider'
 
 const inter = Inter({ subsets: ['latin'] });
 const poppins = Poppins({
@@ -16,7 +16,7 @@ const poppins = Poppins({
 
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://realsnetwork-768vnozys-universe-stack.vercel.app'),
+  metadataBase: new URL('https://realsnetwork.vercel.app'),
   title: 'Reals',
   description: 'Become a real deal',
   generator: 'Next.js',
@@ -93,11 +93,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={GeistSans.className}>
-        <Provider>
           <Navbar />
           {children}
           <Footer />
-        </Provider>
       </body>
     </html>
   )
