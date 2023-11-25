@@ -1,6 +1,6 @@
-//'use client'
+'use client'
 
-import React from 'react';
+import React,{Suspense} from 'react';
 import Image from "next/image"
 import Link from "next/link"
 import pic from "../../../public/reals standing.png";
@@ -23,7 +23,11 @@ const Nav = (props: Props) => {
                     </div>
 
                     <div className='w-[80%] flex gap-[9.87px] justify-between'>
-                        <div className='w-[65%]'><Search placeholder="Search tasks..."/></div>
+                        <div className='w-[65%]'>
+                            <Suspense fallback={<>Loading...</>}>
+                                <Search placeholder="Search tasks..."/>
+                            </Suspense>
+                        </div>
                         <div className=' w-[15%] flex gap-[14%] '>
                             <div className="indicator">
                                 <span className="indicator-item badge badge-secondary bg-blue-600 border-none mt-2">99+</span> 
