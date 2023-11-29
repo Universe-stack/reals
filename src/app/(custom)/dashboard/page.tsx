@@ -3,11 +3,17 @@ import Link from 'next/link';
 import Image from 'next/image';
 import sunset from '../../../../public/reals sunset.png';
 import Chart from '../../components/Chart';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 function ChartFallback() {
   return <>placeholder</>
 }
 const Dashboard = () => {
+    async function fetchData(){
+      const data = await getServerSession(authOptions)
+    }
+  
   return (
     <div className='bg-[#FAFAFB] min-h-screen w-full text-center flex justify-between align-middle text-[#3F3F46]'>
       <div className=' py-[2.06rem] w-[92%] ml-[2.5%] h-full flex flex-col justify-center text-[#3F3F46] gap-[1.81rem]'>

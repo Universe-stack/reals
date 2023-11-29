@@ -6,6 +6,7 @@ import '../globals.css';
 //import Nav from '@/app/components/Navbar'
 import Navbar from '@/app/components/Navbar';
 import Footer from '@/app/components/Footer';
+import AuthProvider from '../components/AuthProvider';
 //import Provider from '../components/Provider'
 
 const inter = Inter({ subsets: ['latin'] });
@@ -93,9 +94,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={GeistSans.className}>
-          <Navbar />
-          {children}
-          <Footer />
+        <main>
+          <AuthProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </AuthProvider>
+        </main>
+
       </body>
     </html>
   )
