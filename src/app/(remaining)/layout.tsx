@@ -6,7 +6,8 @@ import '../globals.css';
 //import Nav from '@/app/components/Navbar'
 import Navbar from '@/app/components/Navbar';
 import Footer from '@/app/components/Footer';
-import AuthProvider from '../components/AuthProvider';
+//import AuthProvider from '../components/AuthProvider';
+import { AuthContextProvider } from '../context/AuthContext';
 //import Provider from '../components/Provider'
 
 const inter = Inter({ subsets: ['latin'] });
@@ -95,11 +96,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={GeistSans.className}>
         <main>
-          <AuthProvider>
+          <AuthContextProvider>
             <Navbar />
             {children}
             <Footer />
-          </AuthProvider>
+          </AuthContextProvider>
         </main>
 
       </body>

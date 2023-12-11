@@ -6,6 +6,7 @@ import '../globals.css';
 import Review from '../../../public/Review.png';
 import teens from '../../../public/reals teens.png';
 import Image from 'next/image';
+import { AuthContextProvider } from '../context/AuthContext';
 
 
 
@@ -94,33 +95,35 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={GeistSans.className}>
-        <div className='w-full'>
-            <div className='w-[100%] flex justify-center align-start min-h-screen'>
-                <div className='w-[45%] bg-[#2563EB] flex'>
-                    <div className='w-[75%] py-[6.87rem] flex flex-col align-start justify-between ml-[8.5rem] '>
-                        <div className=''>
-                            <p className = 'text-[3.60rem] text-white font-[600] leading-[4.125rem] teacking-[-0.125rem] '> Welcome to our community</p>
-                            <p className= 'text-[1.10rem] font-[400] leading-[1.875rem] text-[#CBD5E1]'>Clarity gives you the blocks & components you need to create a truly professional website.</p>
-                        </div>
+        <AuthContextProvider>
+          <div className='w-full'>
+              <div className='w-[100%] flex justify-center align-start min-h-screen'>
+                  <div className='w-[45%] bg-[#2563EB] flex'>
+                      <div className='w-[75%] py-[6.87rem] flex flex-col align-start justify-between ml-[8.5rem] '>
+                          <div className=''>
+                              <p className = 'text-[3.60rem] text-white font-[600] leading-[4.125rem] teacking-[-0.125rem] '> Welcome to our community</p>
+                              <p className= 'text-[1.10rem] font-[400] leading-[1.875rem] text-[#CBD5E1]'>Clarity gives you the blocks & components you need to create a truly professional website.</p>
+                          </div>
 
-                        <div className='flex flex-col gap-[1.87rem]'>
-                            <Image src={Review} alt='' width={100} height={100} />
-                            <p className='text-[1.125rem] font-[400] leading-[2.125rem] text-white'>&quot; We love Landingfolio! Our designers were using it for their projects, so we already knew what kind of design they want.&quot;</p>
-                            <div className='flex gap-[0.94rem]'>
-                                <Image src={teens} alt='' width={100} height={100} className='rounded-full w-[2.81188rem] h-[2.81188rem]'/>
-                                <span className=''>
-                                    <p className='font-[600] text-[1rem] tracking-[-0.0125rem] leading-[1.75rem] text-white'> Justice Kachi</p>
-                                    <p className='text-[#CBD5E1] text-[0.875rem] leading-[1.375rem]'>Founder, Reals.io</p>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className='w-[55%] bg-white'>
-                    {children}
-                </div>
-            </div>
-        </div>
+                          <div className='flex flex-col gap-[1.87rem]'>
+                              <Image src={Review} alt='' width={100} height={100} />
+                              <p className='text-[1.125rem] font-[400] leading-[2.125rem] text-white'>&quot; We love Landingfolio! Our designers were using it for their projects, so we already knew what kind of design they want.&quot;</p>
+                              <div className='flex gap-[0.94rem]'>
+                                  <Image src={teens} alt='' width={100} height={100} className='rounded-full w-[2.81188rem] h-[2.81188rem]'/>
+                                  <span className=''>
+                                      <p className='font-[600] text-[1rem] tracking-[-0.0125rem] leading-[1.75rem] text-white'> Justice Kachi</p>
+                                      <p className='text-[#CBD5E1] text-[0.875rem] leading-[1.375rem]'>Founder, Reals.io</p>
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div className='w-[55%] bg-white'>
+                      {children}
+                  </div>
+              </div>
+          </div>
+        </AuthContextProvider>
       </body>
     </html>
   )

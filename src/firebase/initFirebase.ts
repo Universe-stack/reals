@@ -1,9 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp, getApps } from "firebase/app";
-import dotenv from "dotenv"
-dotenv.config();
+import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth'
 
-const firebaseConfig = {
+const clientConfig = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
     authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
     projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
@@ -14,6 +14,9 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-let firebase_app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+let firebase_app = getApps().length === 0 ? initializeApp(clientConfig) : getApps()[0];
+const db = getFirestore(firebase_app);
 
-export default firebase_app;
+//export default firebase_app;
+export {db}
+export const auth = getAuth(firebase_app)

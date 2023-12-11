@@ -1,6 +1,6 @@
-'use client'
+"use client"
 
-import React from 'react'
+import React from 'react';
 import Image from 'next/image';
 import HeroImage from '../components/Image';
 import Brands from '../components/Brands';
@@ -9,11 +9,11 @@ import Testimonials from '../components/Testimonials';
 import Stats from '../components/Stats';
 import Video from '../components/Video';
 import Community from '../components/Community';
-import {useSession} from 'next-auth/react'
+
 
 
 export default function Home() {
-  const {data} = useSession();
+  
   return (
     <main className="w-full flex flex-col justify-center">
       <div className=' Home-inner flex flex-col justify-center align-middle w-[80%] self-center py-[100px]'>
