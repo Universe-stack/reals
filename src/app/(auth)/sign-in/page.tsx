@@ -1,10 +1,11 @@
+'use client'
 import React,{useState} from 'react';
 import Link from 'next/link';
 
 
 const LoginPage = () => {
 
-    const [formData, setFormData] = useState({email:"", password:""});
+  const [formData, setFormData] = useState({email:"", password:""});
 
   return (
     <section className="bg-white  self-center mt-[1.7rem] ">

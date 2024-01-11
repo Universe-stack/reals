@@ -1,41 +1,68 @@
+'use client'
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { db } from "@/firebase/initFirebase"
+import {collection, addDoc,getDocs, query,where} from 'firebase/firestore'
 
 interface HabitFormData {
-  date: string;
+  date: Date;
   habitName: string;
   description: string;
   completed: boolean;
   rewardPoints: number;
-  rewardType: string;
-  mood: string;
-  consistencyStreak: boolean;
-  nextSteps: string;
-  feedback: string;
   status: string;
   assignedTo: string;
-  time: Date | null
+  time: Date | null;
+  tasks:[]
 }
 
 const HabitForm: React.FC = () => {
   const [habitData, setHabitData] = useState<HabitFormData>({
-    date: '',
+    date: new Date(),
     habitName: '',
     description: '',
     completed: false,
     rewardPoints: 0,
-    rewardType: 'Points',
-    mood: 'Neutral',
-    consistencyStreak: false,
-    nextSteps: '',
-    feedback: '',
     status: 'Not Started',
     assignedTo: '',
     time: null,
+    tasks:[]
   });
 
+  const [storedInDb,setStoredInDb]= useState(false);
   const [errors, setErrors] = useState<{ [key in keyof HabitFormData]?: string }>({});
+
+  const createCollectionIfNotExists = async (collectionName:any) => {
+    const querySnapshot = await getDocs(collection(db, collectionName));
+  
+    if (querySnapshot.empty) {
+      // The collection doesn't exist, so create it
+      console.log(`Creating collection: ${collectionName}`);
+      await addDoc(collection(db, collectionName), { dummy: "data" });
+    }
+};
+
+  async function WriteToCloudFirestore (date:Date,habitName:string,description:string,rewardPoints:number,assignedTo:string,tasks:[] ) {
+    try {
+        await createCollectionIfNotExists("goal");
+
+        const docRef = await addDoc(collection(db, "goal"), {
+            date:date,
+            habitName:habitName,
+            description:description,
+            assignedTo:assignedTo,
+            rewardPoints:rewardPoints,
+            tasks:tasks
+        });
+        console.log("Document 'Goals' written with ID:",docRef.id )
+        return true
+    }catch(error){
+        console.error("Error adding data", error)
+        return false;
+    }
+}
+
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | any>) => {
     const { name, value, type, checked } = e.target;
@@ -48,12 +75,11 @@ const HabitForm: React.FC = () => {
   const handleChangeDate = (name: keyof HabitFormData, value: any) => {
     setHabitData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [name]: value || new Date(),
     }));
   };
-  
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const validationErrors: { [key in keyof HabitFormData]?: string } = {};
 
@@ -71,7 +97,24 @@ const HabitForm: React.FC = () => {
           }
           setErrors({});
 
-    console.log('Form data submitted:', habitData);
+          const added = await WriteToCloudFirestore(habitData.date,habitData.habitName,habitData.description,habitData.rewardPoints,habitData.assignedTo,habitData.tasks)
+          console.log("added",added)
+          if(added){
+              setStoredInDb(true);
+              setHabitData({
+                  date: new Date(),
+                  habitName: '',
+                  description: '',
+                  rewardPoints:0,
+                  assignedTo:'',
+                  tasks:[],
+                  completed: false,
+                  status:'',
+                  time: null
+
+              })
+              alert("Data added to firestore!")
+          }
   };
 
   return (
@@ -99,7 +142,7 @@ const HabitForm: React.FC = () => {
           type="date"
           id="date"
           name="date"
-          value={habitData.date}
+          value={`${new Date()}`}
           onChange={handleChange}
           className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />
