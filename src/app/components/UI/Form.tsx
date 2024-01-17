@@ -14,7 +14,10 @@ interface HabitFormData {
   status: string;
   assignedTo: string;
   time: Date | null;
-  tasks:[]
+  tasks:[];
+  startLevel:number;
+  currentLevel:number;
+  totalLevel:number;
 }
 
 const HabitForm: React.FC = () => {
@@ -27,7 +30,12 @@ const HabitForm: React.FC = () => {
     status: 'Not Started',
     assignedTo: '',
     time: null,
-    tasks:[]
+    tasks:[],
+    startLevel:0,
+    currentLevel:0,
+    totalLevel: 0,
+
+
   });
 
   const [storedInDb,setStoredInDb]= useState(false);
@@ -43,7 +51,7 @@ const HabitForm: React.FC = () => {
     }
 };
 
-  async function WriteToCloudFirestore (date:Date,habitName:string,description:string,rewardPoints:number,assignedTo:string,tasks:[] ) {
+  async function WriteToCloudFirestore (date:Date,habitName:string,description:string,rewardPoints:number,assignedTo:string,tasks:[],startLevel:number,currentLevel:number,totalLevel:number ) {
     try {
         await createCollectionIfNotExists("goal");
 
@@ -53,7 +61,10 @@ const HabitForm: React.FC = () => {
             description:description,
             assignedTo:assignedTo,
             rewardPoints:rewardPoints,
-            tasks:tasks
+            tasks:tasks,
+            startLevel:startLevel,
+            currentLevel:currentLevel,
+            totalLevel:totalLevel
         });
         console.log("Document 'Goals' written with ID:",docRef.id )
         return true
@@ -97,7 +108,7 @@ const HabitForm: React.FC = () => {
           }
           setErrors({});
 
-          const added = await WriteToCloudFirestore(habitData.date,habitData.habitName,habitData.description,habitData.rewardPoints,habitData.assignedTo,habitData.tasks)
+          const added = await WriteToCloudFirestore(habitData.date,habitData.habitName,habitData.description,habitData.rewardPoints,habitData.assignedTo,habitData.tasks,habitData.startLevel,habitData.currentLevel,habitData.totalLevel)
           console.log("added",added)
           if(added){
               setStoredInDb(true);
@@ -110,8 +121,10 @@ const HabitForm: React.FC = () => {
                   tasks:[],
                   completed: false,
                   status:'',
-                  time: null
-
+                  time: null,
+                  startLevel:0,
+                  currentLevel:0,
+                  totalLevel:0,
               })
               alert("Data added to firestore!")
           }
@@ -142,7 +155,7 @@ const HabitForm: React.FC = () => {
           type="date"
           id="date"
           name="date"
-          value={`${new Date()}`}
+          value={`${habitData.date}`}
           onChange={handleChange}
           className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />

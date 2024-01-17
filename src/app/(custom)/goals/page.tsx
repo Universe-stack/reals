@@ -1,11 +1,56 @@
+"use client"
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
 import Drawer from '@/app/components/UI/Drawer';
+import { collection, getDocs } from "firebase/firestore"
+import { useEffect, useState } from 'react';
+import { db } from "@/firebase/initFirebase"
+
+
+interface HabitFormData {
+  date: Date;
+  habitName: string;
+  description: string;
+  completed: boolean;
+  rewardPoints: number;
+  status: string;
+  assignedTo: string;
+  time: Date | null;
+  tasks:[];
+  startLevel:number;
+  currentLevel:number;
+  totalLevel:number;
+}
+
+async function getGoalData():Promise<HabitFormData | null | boolean | any>{
+  try{
+    const querySnapshot = await getDocs(collection(db, "goal"));
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+    });
+    return querySnapshot;
+  }
+  catch(e){
+    console.log('request failed',e)
+    return false
+  }
+}
+
 
 
 
 const Goals = () => {
+
+  const [data,setData] = useState({})
+
+  useEffect(()=>{
+    getGoalData()
+      .then(result => {console.log(result,'result')})
+      .catch(error=>(console.log(error, 'error fetching data from firestore')))
+  }, [])
+
   return (
     <div className='bg-[rgb(250,250,251)] min-h-screen w-full flex justify-between align-middle text-[#3F3F46]'>
       <div className=' py-[2.06rem] w-[92%] ml-[2.5%] h-full flex flex-col justify-center text-[#3F3F46] gap-[1.81rem]'>
